@@ -9,7 +9,7 @@ I'm passionate about creating beautiful and functional web applications.
 
 ## Contact Me
 Feel free to reach out if you have any questions or just want to connect:
-- 📧 Email: [varcuts@gmail.com](mailto:varcuts@gmail.com)
+- 📧 Email: [contact@varcuts.com](mailto:contact@varcuts.com)
 - 🌐 Website: [varcuts.com](http://varcuts.com)
 
 ## Interests
