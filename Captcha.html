@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAPTCHA_DEMO</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        .captcha-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .captcha {
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            background-color: #e0e0e0;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .input-container {
+            display: flex;
+            flex-direction: column;
+        }
+        .input-container input {
+            margin-bottom: 10px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .input-container button {
+            padding: 10px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .input-container button:hover {
+            background-color: #0056b3;
+        }
+        .message {
+            margin-top: 10px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="captcha-container">
+        <div class="captcha" id="captcha"></div>
+        <div class="input-container">
+            <input type="text" id="captcha-input" placeholder="Enter CAPTCHA">
+            <button onclick="validateCaptcha()">Submit</button>
+        </div>
+        <div class="message" id="message"></div>
+    </div>
+    <script>
+        function generateCaptcha() {
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            let captcha = '';
+            for (let i = 0; i < 6; i++) {
+                captcha += characters.charAt(Math.floor(Math.random() * characters.length));
+            }
+            document.getElementById('captcha').innerText = captcha;
+        }
+
+        function validateCaptcha() {
+            const userInput = document.getElementById('captcha-input').value;
+            const captcha = document.getElementById('captcha').innerText;
+            const messageElement = document.getElementById('message');
+
+            if (userInput === captcha) {
+                messageElement.style.color = 'green';
+                messageElement.innerText = 'CAPTCHA validation successful!';
+            } else {
+                messageElement.style.color = 'red';
+                messageElement.innerText = 'CAPTCHA validation failed. Please try again.';
+                generateCaptcha(); // regenerate CAPTCHA on failure
+                document.getElementById('captcha-input').value = ''; // clear input
+            }
+        }
+
+        window.onload = generateCaptcha;
+    </script>
+</body>
+</html>
